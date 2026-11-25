@@ -54,7 +54,7 @@ The Dev Tool is a userscript that loads **one model at a time** in GeoFS and giv
 **Setup (once)**
 
 1. Install the [Tampermonkey](https://www.tampermonkey.net/) browser extension.
-2. Install the **Geo-ports Dev Tool** script: `LINK-TO-DEV-TOOL` *(maintainers: replace this with the link to the script)*.
+2. Install the **Geo-ports Dev Tool** script: geo-ports-dev-tool.user.js
 3. If you also run the public Geo-ports script, turn it off while you test so nothing loads twice. The same goes for other airport-building addons.
 
 **Placing your model**
