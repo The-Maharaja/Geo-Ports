@@ -15,7 +15,7 @@ A whole new addon to import buildings to the web browser flight simulator for th
 
 | Airport | Building | Status |
 | --- | --- | --- |
-| Delhi (VIDP) | ATC Tower | ✅ Available |
+| Delhi (VIDP) | ATC Tower | ✅ Available |  <img width="2306" height="870" alt="Screenshot 2026-11-24 221834" src="https://github.com/user-attachments/assets/bbe9b002-7aa2-46ea-8e48-5764a58c7db0" />
 
 More buildings and airports are on the way. Want to add one? See [Contributing](#contributing).
 
@@ -47,7 +47,7 @@ The full steps are in the **[Contribution Guide](ContributionGuide.md)**.
 
 ## Credits
 
-- **Delhi ATC Tower:** The-Maharaja  <img width="2306" height="870" alt="Screenshot 2026-11-24 221834" src="https://github.com/user-attachments/assets/bbe9b002-7aa2-46ea-8e48-5764a58c7db0" />
+- **Delhi ATC Tower:** The-Maharaja 
 
 Everyone who contributes a model is credited here.
 
