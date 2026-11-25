@@ -7,7 +7,6 @@
 // @match        *://geo-fs.com/*
 // @match        *://*.geo-fs.com/*
 // @grant        none
-// @icon         icon.png.png
 // @run-at       document-idle
 // @updateURL    https://raw.githubusercontent.com/The-Maharaja/Geo-Ports/main/geo-ports.user.js
 // @downloadURL  https://raw.githubusercontent.com/The-Maharaja/Geo-Ports/main/geo-ports.user.js
