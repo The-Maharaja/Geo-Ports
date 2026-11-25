@@ -3,10 +3,6 @@ A whole new addon to import buildings to the web browser flight simulator for th
 # ✈️ Geo-ports
 
 **Custom airport buildings for [GeoFS](https://www.geo-fs.com).** Hand-modelled terminals and towers, placed where they stand in the real world, loaded only when you're close enough to see them.
-
-<!-- Add a hero screenshot here, e.g. the Delhi ATC tower at sunset:
-![Delhi ATC tower in GeoFS](docs/screenshot-atc.png) -->
-
 ---
 
 ## What you get
@@ -68,8 +64,7 @@ The full steps are in the **[Contribution Guide](ContributionGuide.md)**.
 
 ## Credits
 
-- **Delhi ATC Tower:** *(add the modeller's name)*
-- **Script:** *(add your name)*
+- **Delhi ATC Tower:** The-Maharaja
 
 Everyone who contributes a model is credited here.
 
@@ -77,11 +72,5 @@ Everyone who contributes a model is credited here.
 
 - Discord: **`the_maharaja`**
 - GitHub: [open an issue](../../issues)
-
-## License
-
-*(Choose a license, and state here whether the models are covered by it or have their own terms.)*
-
----
 
 *Geo-ports is a community project. It is not affiliated with or endorsed by GeoFS.*
