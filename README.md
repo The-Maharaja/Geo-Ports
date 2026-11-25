@@ -24,7 +24,7 @@ More buildings and airports are on the way. Want to add one? See [Contributing](
 ## Install
 
 1. Install the [Tampermonkey](https://www.tampermonkey.net/) extension for your browser.
-2. Open the script link: **`LINK-TO-SCRIPT`** *(maintainers: replace with the raw link, `https://raw.githubusercontent.com/USER/REPO/main/geo-ports.user.js`)*
+2. Open the script link: https://raw.githubusercontent.com/The-Maharaja/Geo-Ports-GeoFS-Buildings-/main/geo-ports.user.js
 3. Click **Install** in the Tampermonkey tab that opens.
 4. Open [GeoFS](https://www.geo-fs.com) and fly to an airport on the list above.
 
