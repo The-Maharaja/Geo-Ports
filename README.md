@@ -32,23 +32,6 @@ Tampermonkey checks for new versions automatically, so new buildings appear with
 
 **Tested on** GeoFS 3.9 and the 4.0 beta.
 
----
-
-## Troubleshooting
-
-**I don't see a building.**
-- Check that Tampermonkey is enabled and that **Geo-ports** shows as on for the GeoFS page.
-- Fly closer. Models only load within their load distance, and it can take a few seconds after you arrive.
-- Press **F12**, open the **Console** tab, and look for lines starting with `[Geo-ports]`. They say what loaded and what failed.
-
-**Buildings look doubled.**
-- Another airport-building addon is probably adding the same building. Turn one of them off.
-
-**It's in the wrong place or floating or sunk.**
-- Please [open an issue](../../issues) with the airport, the building and a screenshot. Positions are tuned by hand and we're glad to fix them.
-
----
-
 ## Contributing
 
 Geo-ports is community-built. If you can model, you can add a building:
@@ -64,7 +47,7 @@ The full steps are in the **[Contribution Guide](ContributionGuide.md)**.
 
 ## Credits
 
-- **Delhi ATC Tower:** The-Maharaja
+- **Delhi ATC Tower:** The-Maharaja ![Alt text]("E:\Puneet Realme Phone Backup Sept 2025\pITURS\Screenshots\Screenshot 2026-11-24 221834.png")
 
 Everyone who contributes a model is credited here.
 
