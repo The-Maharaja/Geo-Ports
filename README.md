@@ -47,7 +47,7 @@ The full steps are in the **[Contribution Guide](ContributionGuide.md)**.
 
 ## Credits
 
-- **Delhi ATC Tower:** The-Maharaja ![Alt text]("E:\Puneet Realme Phone Backup Sept 2025\pITURS\Screenshots\Screenshot 2026-11-24 221834.png")
+- **Delhi ATC Tower:** The-Maharaja  <img width="2306" height="870" alt="Screenshot 2026-11-24 221834" src="https://github.com/user-attachments/assets/bbe9b002-7aa2-46ea-8e48-5764a58c7db0" />
 
 Everyone who contributes a model is credited here.
 
