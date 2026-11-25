@@ -1,6 +1,9 @@
 # ✈️ Geo-ports
 
 **Custom airport buildings for [GeoFS](https://www.geo-fs.com).** Hand-modelled terminals and towers, placed where they stand in the real world, loaded only when you're close enough to see them.
+
+![Delhi ATC Tower in GeoFS](https://github.com/user-attachments/assets/bbe9b002-7aa2-46ea-8e48-5764a58c7db0)
+
 ---
 
 ## What you get
@@ -13,7 +16,7 @@
 
 | Airport | Building | Status |
 | --- | --- | --- |
-| Delhi (VIDP) | ATC Tower | ✅ Available 
+| Delhi (VIDP) | ATC Tower | ✅ Available |
 
 More buildings and airports are on the way. Want to add one? See [Contributing](#contributing).
 
@@ -22,13 +25,30 @@ More buildings and airports are on the way. Want to add one? See [Contributing](
 ## Install
 
 1. Install the [Tampermonkey](https://www.tampermonkey.net/) extension for your browser.
-2. Open the script link: https://raw.githubusercontent.com/The-Maharaja/Geo-Ports-GeoFS-Buildings-/main/geo-ports.user.js
+2. Open the script link: **[geo-ports.user.js](https://raw.githubusercontent.com/The-Maharaja/Geo-Ports/main/geo-ports.user.js)**
 3. Click **Install** in the Tampermonkey tab that opens.
 4. Open [GeoFS](https://www.geo-fs.com) and fly to an airport on the list above.
 
 Tampermonkey checks for new versions automatically, so new buildings appear without you reinstalling anything.
 
 **Tested on** GeoFS 3.9 and the 4.0 beta.
+
+---
+
+## Troubleshooting
+
+**I don't see a building.**
+- Check that Tampermonkey is enabled and that **Geo-ports** shows as on for the GeoFS page.
+- Fly closer. Models only load within their load distance, and it can take a few seconds after you arrive.
+- Press **F12**, open the **Console** tab, and look for lines starting with `[Geo-ports]`. They say what loaded and what failed.
+
+**Buildings look doubled.**
+- Another airport-building addon is probably adding the same building. Turn one of them off.
+
+**It's in the wrong place, or floating or sunk.**
+- Please [open an issue](../../issues) with the airport, the building and a screenshot. Positions are tuned by hand and we're glad to fix them.
+
+---
 
 ## Contributing
 
@@ -45,7 +65,7 @@ The full steps are in the **[Contribution Guide](ContributionGuide.md)**.
 
 ## Credits
 
-- **Delhi ATC Tower:** The-Maharaja  <img width="2306" height="870" alt="Screenshot 2026-11-24 221834" src="https://github.com/user-attachments/assets/bbe9b002-7aa2-46ea-8e48-5764a58c7db0" />
+- **Delhi ATC Tower:** The-Maharaja
 
 Everyone who contributes a model is credited here.
 
@@ -53,5 +73,11 @@ Everyone who contributes a model is credited here.
 
 - Discord: **`the_maharaja`**
 - GitHub: [open an issue](../../issues)
+
+## License
+
+The scripts are released under the [MIT License](LICENSE). Models are the work of their credited creators.
+
+---
 
 *Geo-ports is a community project. It is not affiliated with or endorsed by GeoFS.*
