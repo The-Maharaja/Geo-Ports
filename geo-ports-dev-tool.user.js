@@ -1,12 +1,15 @@
 // ==UserScript==
 // @name         Geo-ports Dev Tool
 // @namespace    geo-ports-dev-tool
-// @version      1.0.0
+// @version      1.1.0
 // @description  Geo-ports developer tool: loads ONE .glb (hosted URL or local file), tune position/heading/scale live, copy the config for the public addon.
 // @match        *://geo-fs.com/*
 // @match        *://*.geo-fs.com/*
 // @grant        none
+// @author       The-Maharaja
 // @run-at       document-idle
+// @updateURL    https://raw.githubusercontent.com/The-Maharaja/Geo-Ports/main/geo-ports-dev-tool.user.js
+// @downloadURL  https://raw.githubusercontent.com/The-Maharaja/Geo-Ports/main/geo-ports-dev-tool.user.js
 // ==/UserScript==
 
 (function () {
