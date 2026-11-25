@@ -1,19 +1,17 @@
 // ==UserScript==
 // @name         Geo-ports
 // @namespace    geo-ports
-// @version      1.1.0
+// @version      1.2.0
 // @description  Geo-ports: adds custom airport buildings (currently Delhi, VIDP) to GeoFS. Models load only when you are nearby.
-// @author       (add your name / credits here)
+// @author       The-Maharaja
 // @match        *://geo-fs.com/*
 // @match        *://*.geo-fs.com/*
 // @grant        none
 // @run-at       document-idle
+// @updateURL    https://raw.githubusercontent.com/The-Maharaja/Geo-Ports/main/geo-ports.user.js
+// @downloadURL  https://raw.githubusercontent.com/The-Maharaja/Geo-Ports/main/geo-ports.user.js
 // ==/UserScript==
 
-/* Once this script lives in your own GitHub repo, add these two lines to the block above
-   so Tampermonkey can auto-update it (replace USER/REPO):
-   // @updateURL    https://raw.githubusercontent.com/USER/REPO/main/geo-ports.user.js
-   // @downloadURL  https://raw.githubusercontent.com/USER/REPO/main/geo-ports.user.js */
 
 (function () {
     "use strict";
