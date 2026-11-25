@@ -1,5 +1,3 @@
-# Geo-Ports-GeoFS-Buildings-
-A whole new addon to import buildings to the web browser flight simulator for the buildings that are broken.
 # ✈️ Geo-ports
 
 **Custom airport buildings for [GeoFS](https://www.geo-fs.com).** Hand-modelled terminals and towers, placed where they stand in the real world, loaded only when you're close enough to see them.
