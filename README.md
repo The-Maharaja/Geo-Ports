@@ -14,9 +14,10 @@
 
 ## Available now
 
-| Airport | Building | Status |
+| Airport | Buildings | Status |
 | --- | --- | --- |
 | Delhi (VIDP) | ATC Tower | ✅ Available |
+| Bengaluru (VOBL) | ATC Tower, cargo building (DHL, FedEx, UPS), Shell gas station, IndiGo MRO, Blue Dart Express Terminal 2, arch and plane-spotting tower, water tank and plane spotter | ✅ Available |
 
 More buildings and airports are on the way. Want to add one? See [Contributing](#contributing).
 
@@ -31,8 +32,6 @@ More buildings and airports are on the way. Want to add one? See [Contributing](
 
 Tampermonkey checks for new versions automatically, so new buildings appear without you reinstalling anything.
 
-**Tested on** GeoFS 3.9 and the 4.0 beta.
-
 ---
 
 ## Troubleshooting
@@ -44,6 +43,9 @@ Tampermonkey checks for new versions automatically, so new buildings appear with
 
 **Buildings look doubled.**
 - Another airport-building addon is probably adding the same building. Turn one of them off.
+
+**A GeoFS building overlaps or flickers through a custom one.**
+- Please [open an issue](../../issues) with the airport, the building and a screenshot so we can look at it.
 
 **It's in the wrong place, or floating or sunk.**
 - Please [open an issue](../../issues) with the airport, the building and a screenshot. Positions are tuned by hand and we're glad to fix them.
@@ -66,6 +68,9 @@ The full steps are in the **[Contribution Guide](ContributionGuide.md)**.
 ## Credits
 
 - **Delhi ATC Tower:** The-Maharaja
+- **Bengaluru (VOBL) buildings:** used with permission
+  - ATC tower, cargo building (DHL, FedEx, UPS), Shell gas station, IndiGo MRO, Blue Dart Express Terminal 2: from [greenairways](https://github.com/greenairways)'s Bengaluru work
+  - Arch and plane-spotting tower, water tank and plane spotter: from [SpeedBird4284](https://github.com/SpeedBird4284)'s [GeoFS-3D-buildings](https://github.com/SpeedBird4284/GeoFS-3D-buildings)
 
 Everyone who contributes a model is credited here.
 

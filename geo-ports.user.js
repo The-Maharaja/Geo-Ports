@@ -1,8 +1,8 @@
 // ==UserScript==
 // @name         Geo-ports
 // @namespace    geo-ports
-// @version      1.2.0
-// @description  Geo-ports: adds custom airport buildings (currently Delhi, VIDP) to GeoFS. Models load only when you are nearby.
+// @version      1.3.0
+// @description  Geo-ports: adds custom airport buildings (Delhi, Bengaluru) to GeoFS. Models load only when you are nearby.
 // @author       The-Maharaja
 // @match        *://geo-fs.com/*
 // @match        *://*.geo-fs.com/*
@@ -11,7 +11,6 @@
 // @updateURL    https://raw.githubusercontent.com/The-Maharaja/Geo-Ports/main/geo-ports.user.js
 // @downloadURL  https://raw.githubusercontent.com/The-Maharaja/Geo-Ports/main/geo-ports.user.js
 // ==/UserScript==
-
 
 (function () {
     "use strict";
@@ -26,7 +25,6 @@
     /* ================= MODELS =================
        Paste configs copied from the Geo-ports Dev Tool here (one object per model).
        loadRadius: metres from the camera within which this model is loaded.
-                   Use ~15000 for small buildings and ~40000 for big terminals visible from far away.
        mode: "absolute" (default), "relative", or "clamp". */
     const MODELS = [
         {
@@ -39,19 +37,93 @@
             scale: 1.0,
             mode: "absolute",
             loadRadius: 20000
+        },
+
+        /* ---- Bengaluru (VOBL) ---- */
+        {
+            name: "BLR ATC Tower",
+            url: "https://cdn.jsdelivr.net/gh/greenairways/test@latest/speedbirdfiles/ATC%20tower.glb",
+            lat: 13.198876,
+            lon: 77.705320,
+            alt: 894.90,
+            heading: 90.0,
+            scale: 1.0,
+            mode: "absolute",
+            loadRadius: 20000
+        },
+        {
+            name: "BLR Cargo Building (DHL, FedEx, UPS)",
+            url: "https://cdn.jsdelivr.net/gh/greenairways/test@latest/speedbirdfiles/DHL%20+%20FedEx%20+%20UPS%20building.glb",
+            lat: 13.200860,
+            lon: 77.695280,
+            alt: 895.54,
+            heading: 0.0,
+            scale: 1.02,
+            mode: "absolute",
+            loadRadius: 20000
+        },
+        {
+            name: "BLR Shell Gas Station",
+            url: "https://cdn.jsdelivr.net/gh/greenairways/test@latest/speedbirdfiles/Shell%20gas%20station.glb",
+            lat: 13.199997,
+            lon: 77.690975,
+            alt: 896.06,
+            heading: 180.0,
+            scale: 1.0,
+            mode: "absolute",
+            loadRadius: 20000
+        },
+        {
+            name: "BLR IndiGo MRO",
+            url: "https://cdn.jsdelivr.net/gh/greenairways/test@latest/speedbirdfiles/IndiGo%20MRO%20VOBL.glb",
+            lat: 13.200824,
+            lon: 77.686726,
+            alt: 909.40,
+            heading: 90.0,
+            scale: 1.02,
+            mode: "absolute",
+            loadRadius: 20000
+        },
+        {
+            name: "BLR Blue Dart Express Terminal 2",
+            url: "https://cdn.jsdelivr.net/gh/greenairways/test@latest/speedbirdfiles/BLUE%20DART%20EXPRESS%20TERMINAL%202%20(TWO).glb",
+            lat: 13.200524,
+            lon: 77.694243,
+            alt: 905.60,
+            heading: 180.9,
+            scale: 1.0,
+            mode: "absolute",
+            loadRadius: 20000
+        },
+        {
+            name: "BLR Arch and Plane-spotting Tower",
+            url: "https://cdn.jsdelivr.net/gh/SpeedBird4284/GeoFS-3D-buildings@main/BIAL Arch + Plane spotting TWR.glb",
+            lat: 13.210457,
+            lon: 77.719766,
+            alt: 895.60,
+            heading: 115.5,
+            scale: 1.0,
+            mode: "absolute",
+            loadRadius: 20000
+        },
+        {
+            name: "BLR Water Tank and Plane Spotter",
+            url: "https://cdn.jsdelivr.net/gh/SpeedBird4284/GeoFS-3D-buildings@main/Water tank + Plane spotter.glb",
+            lat: 13.210214,
+            lon: 77.719833,
+            alt: 895.60,
+            heading: 115.5,
+            scale: 1.0,
+            mode: "absolute",
+            loadRadius: 20000
         }
     ];
 
-    /* ================= LOGIC ================= */
+    /* ================= MODEL LOADER ================= */
     let viewer = null;
-    const state = MODELS.map(m => ({
-        cfg: m,
-        entity: null,
-        pos: null,
-        enabled: !/YOUR-USER|YOUR-REPO/.test(m.url)
-    }));
+    const state = MODELS.map(function (m) { return { cfg: m, entity: null, pos: null }; });
 
-    const waiter = setInterval(() => {
+    const waiter = setInterval(function () {
         const v = window.geofs && geofs.api && geofs.api.viewer;
         if (v && typeof Cesium !== "undefined") {
             clearInterval(waiter);
@@ -61,11 +133,10 @@
     }, 1000);
 
     function start() {
-        state.forEach(s => {
+        state.forEach(function (s) {
             s.pos = Cesium.Cartesian3.fromDegrees(s.cfg.lon, s.cfg.lat, s.cfg.alt);
-            if (!s.enabled) console.warn(LOG, s.cfg.name + " skipped: its url still has the YOUR-USER/YOUR-REPO placeholder");
         });
-        console.log(LOG, "ready, " + state.filter(s => s.enabled).length + " model(s) registered");
+        console.log(LOG, "ready, " + state.length + " model(s) registered");
         update();
         setInterval(update, CHECK_EVERY_MS);
     }
@@ -107,16 +178,15 @@
         try {
             const cam = viewer.camera.positionWC;
             const wanted = [];
-            state.forEach(s => {
-                if (!s.enabled) return;
+            state.forEach(function (s) {
                 const radius = s.cfg.loadRadius || 30000;
                 const d = Cesium.Cartesian3.distance(cam, s.pos);
                 if (s.entity && d > radius * UNLOAD_FACTOR) removeModel(s);
                 else if (!s.entity && d < radius) wanted.push({ s: s, d: d });
             });
             // load the nearest ones first, a few per check
-            wanted.sort((a, b) => a.d - b.d);
-            wanted.slice(0, MAX_LOADS_PER_CHECK).forEach(w => addModel(w.s));
+            wanted.sort(function (a, b) { return a.d - b.d; });
+            wanted.slice(0, MAX_LOADS_PER_CHECK).forEach(function (w) { addModel(w.s); });
         } catch (err) {
             console.warn(LOG, "update failed", err);
         }
