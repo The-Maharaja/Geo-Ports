@@ -108,7 +108,7 @@ Pick whichever is easiest:
 
 - **GitHub (Pull Request, if you're comfortable with it):** add your config block to the `MODELS` list in `geo-ports.user.js` and open a **Pull Request** (a proposed change to the code).
 
-**What happens next.** We check your model in GeoFS, may adjust the position slightly, and set its `loadRadius` (how far away it starts to load) so it performs well. Once it's added, you'll be credited in the script. We may ask you to optimise a model that's too heavy, or decline one that hurts performance or whose permissions aren't clear.
+**What happens next.** If your building replaces one GeoFS already has, say so in your message; we can hide the default buildings by blocking the map tile that holds them. We check your model in GeoFS, may adjust the position slightly, and set its `loadRadius` (how far away it starts to load) so it performs well. Once it's added, you'll be credited in the script. We may ask you to optimise a model that's too heavy, or decline one that hurts performance or whose permissions aren't clear.
 
 ---
 

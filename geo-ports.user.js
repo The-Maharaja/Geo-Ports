@@ -1,13 +1,13 @@
 // ==UserScript==
 // @name         Geo-ports
 // @namespace    geo-ports
-// @version      1.4.0
-// @description  Geo-ports: adds custom airport buildings (Delhi, Bengaluru, Tokyo) to GeoFS. Models load only when you are nearby.
+// @version      1.5.0
+// @description  Geo-ports: adds custom airport buildings (Delhi, Bengaluru, Tokyo, Hong Kong, Shanghai) to GeoFS. Models load only when you are nearby.
 // @author       The-Maharaja
 // @match        *://geo-fs.com/*
 // @match        *://*.geo-fs.com/*
 // @grant        none
-// @run-at       document-idle
+// @run-at       document-start
 // @updateURL    https://raw.githubusercontent.com/The-Maharaja/Geo-Ports/main/geo-ports.user.js
 // @downloadURL  https://raw.githubusercontent.com/The-Maharaja/Geo-Ports/main/geo-ports.user.js
 // ==/UserScript==
@@ -25,6 +25,8 @@
     /* ================= MODELS =================
        Paste configs copied from the Geo-ports Dev Tool here (one object per model).
        loadRadius: metres from the camera within which this model is loaded.
+       hideTiles:  optional list of GeoFS building-tile names (e.g. "10_1672_385") that are not loaded, which hides
+                   EVERY default building inside those tiles. Only for places where a custom model replaces them.
        mode: "absolute" (default), "relative", or "clamp". */
     const MODELS = [
         {
@@ -118,6 +120,22 @@
             loadRadius: 20000
         },
 
+        /* ---- Hong Kong (VHHH) ---- */
+        {
+            name: "VHHH Hong Kong Terminal 1",
+            // Optimised copy of rdpsitw's VHHH model: same geometry, much smaller file and textures.
+            url: "https://cdn.jsdelivr.net/gh/The-Maharaja/Geo-Ports@main/VHHH_optimized.glb",
+            lat: 22.313954,
+            lon: 113.930337,
+            alt: 3.55,
+            heading: 0.0,
+            scale: 1.0,
+            mode: "absolute",
+            loadRadius: 20000,
+            // The tile that holds the old default airport buildings (the same tile greenairways' old OSM addon blocked).
+            hideTiles: ["10_1672_385"]
+        },
+
         /* ---- Tokyo Haneda (RJTT) ---- */
         {
             name: "RJTT Haneda Terminal 1",
@@ -140,8 +158,97 @@
             scale: 1.0,
             mode: "absolute",
             loadRadius: 25000
+        },
+
+        /* ---- Shanghai Pudong (ZSPD) ---- */
+        {
+            name: "ZSPD Shanghai Pudong Terminal 1",
+            url: "https://cdn.jsdelivr.net/gh/rdpsitw/zspd-t1@main/Untitled1.glb",
+            lat: 31.151350,
+            lon: 121.797810,
+            alt: 3.7,
+            heading: 0.0,
+            scale: 1.0,
+            mode: "absolute",
+            loadRadius: 20000
+        },
+        {
+            name: "ZSPD Shanghai Pudong Tower",
+            url: "https://cdn.jsdelivr.net/gh/rdpsitw/zspd-t1@main/tower.glb",
+            lat: 31.143736,
+            lon: 121.802243,
+            alt: 3.5,
+            heading: 0.0,
+            scale: 1.0,
+            mode: "absolute",
+            loadRadius: 20000
         }
     ];
+
+    /* ================= DEFAULT-BUILDING REMOVER =================
+       GeoFS loads its default buildings as map-tile files named {zoom}_{x}_{y}.glb. Tiles listed in a model's
+       `hideTiles` are not loaded, which hides every default building inside them. This runs at document-start so it
+       is in place before GeoFS asks for any tile.
+       To see which building tiles GeoFS requests (and which are blocked), run this once in the browser console and
+       reload GeoFS:   localStorage.setItem("geoports-debug-tiles", "1")
+       To turn it off:  localStorage.removeItem("geoports-debug-tiles") */
+    const DEBUG_TILES = (function () {
+        try { return localStorage.getItem("geoports-debug-tiles") === "1"; } catch (e) { return false; }
+    })();
+    const TILE_RE = /\/buildings\/(\d+)_(\d+)_(\d+)\.glb/;
+    const blockedTiles = new Set();
+    MODELS.forEach(function (m) {
+        (m.hideTiles || []).forEach(function (t) { blockedTiles.add(t); });
+    });
+
+    function urlOf(input) {
+        try {
+            if (typeof input === "string") return input;
+            if (input && typeof input.url === "string") return input.url;   // Request object
+            if (input && typeof input.href === "string") return input.href; // URL object
+            return String(input);
+        } catch (e) { return ""; }
+    }
+
+    function isBlocked(url) {
+        const m = TILE_RE.exec(url);
+        if (!m || /jsdelivr/.test(url)) return false;
+        const key = m[1] + "_" + m[2] + "_" + m[3];
+        const blocked = blockedTiles.has(key);
+        if (DEBUG_TILES) console.log(LOG, "building tile " + key + (blocked ? " BLOCKED" : " allowed"));
+        return blocked;
+    }
+
+    if (blockedTiles.size > 0 || DEBUG_TILES) {
+        const origFetch = window.fetch;
+        if (typeof origFetch === "function") {
+            window.fetch = function (input) {
+                if (isBlocked(urlOf(input))) {
+                    return Promise.reject(new TypeError("Request blocked by Geo-ports"));
+                }
+                return origFetch.apply(this, arguments);
+            };
+        }
+
+        const origOpen = XMLHttpRequest.prototype.open;
+        const origSend = XMLHttpRequest.prototype.send;
+        XMLHttpRequest.prototype.open = function (method, url) {
+            this.__geoportsBlocked = isBlocked(urlOf(url));
+            return origOpen.apply(this, arguments);
+        };
+        XMLHttpRequest.prototype.send = function () {
+            if (this.__geoportsBlocked) {
+                const xhr = this;
+                setTimeout(function () {
+                    xhr.dispatchEvent(new ProgressEvent("error"));
+                    xhr.dispatchEvent(new ProgressEvent("loadend"));
+                }, 0);
+                return;
+            }
+            return origSend.apply(this, arguments);
+        };
+        console.log(LOG, "default-building remover active: " + blockedTiles.size + " tile(s) blocked");
+    }
 
     /* ================= MODEL LOADER ================= */
     let viewer = null;

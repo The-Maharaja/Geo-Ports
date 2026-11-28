@@ -18,7 +18,9 @@
 | --- | --- | --- |
 | Delhi (VIDP) | ATC Tower | ✅ Available |
 | Bengaluru (VOBL) | ATC Tower, cargo building (DHL, FedEx, UPS), Shell gas station, IndiGo MRO, Blue Dart Express Terminal 2, arch and plane-spotting tower, water tank and plane spotter | ✅ Available |
+| Hong Kong (VHHH) | Terminal 1 | ✅ Available |
 | Tokyo Haneda (RJTT) | Terminal 1, tower | ✅ Available |
+| Shanghai Pudong (ZSPD) | Terminal 1, tower | ✅ Available |
 
 More buildings and airports are on the way. Want to add one? See [Contributing](#contributing).
 
@@ -45,8 +47,11 @@ Tampermonkey checks for new versions automatically, so new buildings appear with
 **Buildings look doubled.**
 - Another airport-building addon is probably adding the same building. Turn one of them off.
 
+**Some default buildings are missing around Hong Kong airport.**
+- That's intended. So the old airport buildings don't overlap the custom terminal, one GeoFS map tile is hidden. It covers an area of about 18 × 20 km around the airport (roughly north Lantau, Tung Chung and Ma Wan), so other default buildings in that area disappear too. Other airports are not affected.
+
 **A GeoFS building overlaps or flickers through a custom one.**
-- Please [open an issue](../../issues) with the airport, the building and a screenshot so we can look at it.
+- Open the browser console (F12) and run `localStorage.setItem("geoports-debug-tiles", "1")`, then reload GeoFS and fly there. The console lists every building tile GeoFS requests and whether it was blocked. [Open an issue](../../issues) with those lines, the airport and a screenshot. To turn it off, run `localStorage.removeItem("geoports-debug-tiles")`.
 
 **It's in the wrong place, or floating or sunk.**
 - Please [open an issue](../../issues) with the airport, the building and a screenshot. Positions are tuned by hand and we're glad to fix them.
@@ -72,7 +77,8 @@ The full steps are in the **[Contribution Guide](ContributionGuide.md)**.
 - **Bengaluru (VOBL) buildings:** used with permission
   - ATC tower, cargo building (DHL, FedEx, UPS), Shell gas station, IndiGo MRO, Blue Dart Express Terminal 2: from [greenairways](https://github.com/greenairways)'s Bengaluru work
   - Arch and plane-spotting tower, water tank and plane spotter: from [SpeedBird4284](https://github.com/SpeedBird4284)'s [GeoFS-3D-buildings](https://github.com/SpeedBird4284/GeoFS-3D-buildings)
-- **Tokyo Haneda (RJTT) Terminal 1 and tower:** [rdpsitw](https://github.com/rdpsitw), used with permission
+- **Tokyo Haneda (RJTT) Terminal 1 and tower, Hong Kong (VHHH) Terminal 1, Shanghai Pudong (ZSPD) Terminal 1 and tower:** [rdpsitw](https://github.com/rdpsitw), used with permission. The Hong Kong model is an optimised copy (same geometry, smaller file and textures).
+- **Hiding the old Hong Kong airport buildings:** uses the same map tile as [greenairways](https://github.com/greenairways)'s old GeoFS OSM Airport Models, used with permission
 
 Everyone who contributes a model is credited here.
 
