@@ -1,8 +1,8 @@
 // ==UserScript==
 // @name         Geo-ports
 // @namespace    geo-ports
-// @version      1.3.0
-// @description  Geo-ports: adds custom airport buildings (Delhi, Bengaluru) to GeoFS. Models load only when you are nearby.
+// @version      1.4.0
+// @description  Geo-ports: adds custom airport buildings (Delhi, Bengaluru, Tokyo) to GeoFS. Models load only when you are nearby.
 // @author       The-Maharaja
 // @match        *://geo-fs.com/*
 // @match        *://*.geo-fs.com/*
@@ -116,6 +116,30 @@
             scale: 1.0,
             mode: "absolute",
             loadRadius: 20000
+        },
+
+        /* ---- Tokyo Haneda (RJTT) ---- */
+        {
+            name: "RJTT Haneda Terminal 1",
+            url: "https://cdn.jsdelivr.net/gh/rdpsitw/rjtt-t1@main/RJTTforexport.glb",
+            lat: 35.548851,
+            lon: 139.784042,
+            alt: -2.36,
+            heading: 0.0,
+            scale: 1.0,
+            mode: "absolute",
+            loadRadius: 25000
+        },
+        {
+            name: "RJTT Haneda Tower",
+            url: "https://cdn.jsdelivr.net/gh/rdpsitw/rjtt-t1@main/RJTTtower3.glb",
+            lat: 35.551730,
+            lon: 139.783958,
+            alt: -2.36,
+            heading: 0.0,
+            scale: 1.0,
+            mode: "absolute",
+            loadRadius: 25000
         }
     ];
 

@@ -18,6 +18,7 @@
 | --- | --- | --- |
 | Delhi (VIDP) | ATC Tower | ✅ Available |
 | Bengaluru (VOBL) | ATC Tower, cargo building (DHL, FedEx, UPS), Shell gas station, IndiGo MRO, Blue Dart Express Terminal 2, arch and plane-spotting tower, water tank and plane spotter | ✅ Available |
+| Tokyo Haneda (RJTT) | Terminal 1, tower | ✅ Available |
 
 More buildings and airports are on the way. Want to add one? See [Contributing](#contributing).
 
@@ -71,6 +72,7 @@ The full steps are in the **[Contribution Guide](ContributionGuide.md)**.
 - **Bengaluru (VOBL) buildings:** used with permission
   - ATC tower, cargo building (DHL, FedEx, UPS), Shell gas station, IndiGo MRO, Blue Dart Express Terminal 2: from [greenairways](https://github.com/greenairways)'s Bengaluru work
   - Arch and plane-spotting tower, water tank and plane spotter: from [SpeedBird4284](https://github.com/SpeedBird4284)'s [GeoFS-3D-buildings](https://github.com/SpeedBird4284/GeoFS-3D-buildings)
+- **Tokyo Haneda (RJTT) Terminal 1 and tower:** [rdpsitw](https://github.com/rdpsitw), used with permission
 
 Everyone who contributes a model is credited here.
 
